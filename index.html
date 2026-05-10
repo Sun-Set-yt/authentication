@@ -67,6 +67,7 @@ const redirect = params.get("redirect");
 
 if(redirect){
     localStorage.setItem("redirectAfterLogin", redirect);
+    console.log("Saved redirect:", redirect);
 }
 
 // Firebase Setup
@@ -118,15 +119,17 @@ function signIn(){
         localStorage.setItem("firebaseUser", userCredential.user.email);
 
         // ✅ GET REDIRECT
-        const redirectUrl = localStorage.getItem("redirectAfterLogin");
-
+        const redirectUrl = sessionStorage.getItem("redirectAfterLogin");
+        console.log("Reading redirect:", redirectUrl);
         console.log("Redirect URL:", redirectUrl);
-
+        console.log("ALL STORAGE:", localStorage);
+        console.log("REDIRECT VALUE:", localStorage.getItem("redirectAfterLogin"));
         // ⚡ CLEAR (important)
         localStorage.removeItem("redirectAfterLogin");
 
         // ✅ REDIRECT
         if(redirectUrl){
+            localStorage.removeItem("redirectAfterLogin");
             window.location.href = redirectUrl;
         } else {
             alert("No redirect found ❌");
