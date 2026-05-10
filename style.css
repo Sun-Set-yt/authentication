@@ -1,0 +1,54 @@
+ {
+  margin: 0;
+  padding: 0;
+  box-sizing: borderbox;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    hieght: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'segoe UI', Roboto, Oxygen;
+    background-color: #9633FF;
+}
+
+.Form {
+    width: 400px;
+    border-radius: 5px;
+    background-color: white;
+    /* hieght:fit-content;  */
+    padding: 5px 10px;
+}
+
+label {
+    display: block;
+    font-wieght: bolder;
+    margin: 5px 0px;
+}
+
+#submit-btn {
+    border: none;
+    backgroud-color: blueviolet;
+    width: 100%;
+    padding: 10px 8px;
+    color: white;
+    font-wieght: bolder
+    text-transform: uppercase;
+    cursor: pointer;
+    margin: 9px 0px;
+}
+
+p {
+    font-size: 12px;
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+a {
+    text-decoration: none;
+    font-wieght: bolder;
+}
+
+
