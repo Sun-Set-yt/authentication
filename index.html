@@ -61,6 +61,14 @@ button{
 
 <script>
 
+const params = new URLSearchParams(window.location.search);
+
+const redirect = params.get("redirect");
+
+if(redirect){
+    localStorage.setItem("redirectAfterLogin", redirect);
+}
+
 // Firebase Setup
 firebase.initializeApp({
   apiKey: "AIzaSyBheujHYv5YXKvFOossN_UHbpFyndUTWs4",
@@ -73,6 +81,8 @@ firebase.initializeApp({
 
 // SIGN UP
 function signUp(){
+
+    alert("Please wait... Processing ⏳");
 
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
@@ -93,6 +103,8 @@ function signUp(){
 // SIGN IN
 function signIn(){
 
+    alert("Please wait... Processing ⏳");
+  
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
@@ -100,6 +112,13 @@ function signIn(){
 
     .then((userCredential)=>{
         alert("Login Successful 🔥");
+
+const redirectUrl = localStorage.getItem("redirectAfterLogin");
+
+if(redirectUrl){
+    window.location.href = redirectUrl;
+}
+
         console.log(userCredential);
     })
 
