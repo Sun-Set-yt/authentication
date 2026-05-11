@@ -80,6 +80,11 @@ firebase.initializeApp({
   appId: "1:201135136045:web:96d49a1adeb2130bba47a4"
 });
 
+// 🎯 DIRECT redirect reader (NO STORAGE)
+function getRedirect(){
+    return new URLSearchParams(window.location.search).get("redirect");
+}
+
 // SIGN UP
 function signUp(){
 
@@ -111,28 +116,28 @@ function signIn(){
 
     firebase.auth().signInWithEmailAndPassword(email,password)
 
-    .then((userCredential)=>{
+    .then((user)=>{
 
         alert("Login Successful 🔥");
 
         // ✅ SAVE USER
         localStorage.setItem("firebaseUser", userCredential.user.email);
 
+        const redirectUrl = getRedirect();
         // ✅ GET REDIRECT
-        const redirectUrl = sessionStorage.getItem("redirectAfterLogin");
+        const redirectUrl = localStorage.getItem("redirectAfterLogin");
         console.log("Reading redirect:", redirectUrl);
         console.log("Redirect URL:", redirectUrl);
         console.log("ALL STORAGE:", localStorage);
         console.log("REDIRECT VALUE:", localStorage.getItem("redirectAfterLogin"));
-        // ⚡ CLEAR (important)
-        localStorage.removeItem("redirectAfterLogin");
-
+        
         // ✅ REDIRECT
         if(redirectUrl){
             localStorage.removeItem("redirectAfterLogin");
             window.location.href = redirectUrl;
         } else {
             alert("No redirect found ❌");
+            window.location.href = "home.html";
         }
 
     })
