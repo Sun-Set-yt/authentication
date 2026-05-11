@@ -61,15 +61,6 @@ button{
 
 <script>
 
-const params = new URLSearchParams(window.location.search);
-
-const redirect = params.get("redirect");
-
-if(redirect){
-    localStorage.setItem("redirectAfterLogin", redirect);
-    console.log("Saved redirect:", redirect);
-}
-
 // Firebase Setup
 firebase.initializeApp({
   apiKey: "AIzaSyBheujHYv5YXKvFOossN_UHbpFyndUTWs4",
@@ -79,11 +70,6 @@ firebase.initializeApp({
   messagingSenderId: "201135136045",
   appId: "1:201135136045:web:96d49a1adeb2130bba47a4"
 });
-
-// 🎯 DIRECT redirect reader (NO STORAGE)
-function getRedirect(){
-    return new URLSearchParams(window.location.search).get("redirect");
-}
 
 // SIGN UP
 function signUp(){
@@ -116,31 +102,10 @@ function signIn(){
 
     firebase.auth().signInWithEmailAndPassword(email,password)
 
-    .then((user)=>{
-
+    .then((userCredential)=>{
         alert("Login Successful 🔥");
-
-        // ✅ SAVE USER
-        localStorage.setItem("firebaseUser", userCredential.user.email);
-
         
-        // ✅ GET REDIRECT
-        const redirectUrl = localStorage.getItem("redirectAfterLogin");
-        console.log("Reading redirect:", redirectUrl);
-        console.log("Redirect URL:", redirectUrl);
-        console.log("ALL STORAGE:", localStorage);
-        console.log("REDIRECT VALUE:", localStorage.getItem("redirectAfterLogin"));
-        
-        // ✅ REDIRECT
-        if(redirectUrl){
-            localStorage.removeItem("redirectAfterLogin");
-            window.location.href = redirectUrl;
-        } else {
-            alert("No redirect found ❌");
-            
-        }
-
-    })
+window.location.href = redirectUrl;
 
     .catch((error)=>{
         alert(error.message);
