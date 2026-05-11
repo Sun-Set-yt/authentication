@@ -109,9 +109,10 @@ localStorage.setItem(
 "firebaseUser",
 userCredential.user.email
 );
-        
-window.history.back();
 
+window.history.back();
+    })
+        
     .catch((error)=>{
         alert(error.message);
         console.log(error);
