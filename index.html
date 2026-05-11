@@ -104,6 +104,11 @@ function signIn(){
 
     .then((userCredential)=>{
         alert("Login Successful 🔥");
+
+localStorage.setItem(
+"firebaseUser",
+userCredential.user.email
+);
         
 window.history.back();
 
