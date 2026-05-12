@@ -57,6 +57,8 @@ button{
 
 <button onclick="logout()">Logout</button>
 
+
+
 </div>
 
 <script>
@@ -109,10 +111,18 @@ localStorage.setItem(
 "firebaseUser",
 userCredential.user.email
 );
-
-window.history.back();
-    })
         
+const params = new URLSearchParams(window.location.search);
+const redirectURL = params.get("redirect");
+
+if (redirectURL) {
+    window.location.href = redirectURL;
+} else {
+    alert("No redirect found!");
+}
+
+})
+
     .catch((error)=>{
         alert(error.message);
         console.log(error);
