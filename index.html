@@ -59,6 +59,35 @@ button{
 
 
 
+
+
+<div style="background:#111;color:#fff;padding:15px;border-radius:12px;margin:15px;text-align:left;font-size:14px;">
+
+<h3>🔐 Authentication System</h3>
+
+<button onclick="instructions()">Show Instructions</button>
+
+<div id="instBox" style="display:none;margin-top:10px;">
+  
+<ul>
+  <li>✔ You are logging into Sunset Auth Portal</li>
+  <li>✔ After Sign Up you need to Sign In</li>
+  <li>✔ Works across all Sunset websites 🌐</li>
+  <li>✔ After login you will be redirected automatically</li>
+  <li>✔ Do not close tab during login</li>
+</ul>
+
+<p style="margin-top:10px;color:#ccc;">
+⚠️ Demo Firebase Auth System<br>
+⚠️ Use a strong password 🔐
+</p>
+
+</div>
+
+
+
+
+
 </div>
 
 <script>
@@ -141,6 +170,18 @@ function logout(){
     .catch((error)=>{
         alert(error.message);
     });
+}
+
+function instructions(){
+
+    const box = document.getElementById("instBox");
+
+    if(box.style.display === "none" || box.style.display === ""){
+        box.style.display = "block";
+    } else {
+        box.style.display = "none";
+    }
+
 }
 
 </script>
