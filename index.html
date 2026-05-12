@@ -176,6 +176,11 @@ function instructions(){
 
     const box = document.getElementById("instBox");
 
+    if (!box) {
+        alert("Instruction box not found!");
+        return;
+    }
+
     if(box.style.display === "none" || box.style.display === ""){
         box.style.display = "block";
     } else {
